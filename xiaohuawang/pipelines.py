@@ -13,11 +13,11 @@ class XiaohuawangPipeline(object):
         if spider.name == 'xiaohua':
             # print(item['folder_name'],item['item_name'].item['img_url'])
             # 创建文件夹
-            base_dir = os.path.join(os.path.dirname(__file__) + 'IMG')  # 获取当前脚本所在的路径,双划线表示__file__表示脚本本身，，，__name__ 表示包   拼出来的路径项目根目录
+            base_dir = os.path.join(os.path.dirname(__file__), 'IMG')  # 获取当前脚本所在的路径,双划线表示__file__表示脚本本身，，，__name__ 表示包   拼出来的路径项目根目录
             img_dir = os.path.join(base_dir,item['folder_name'])   # 目录文件名
             if not os.path.exists(img_dir):
                 os.makedirs(img_dir)
-                img_path = os.path.join(img_dir, item['img_name'])     #图片文件名
+            img_path = os.path.join(img_dir, item['img_name'])     #图片文件名
 
             # TODO先用同步的方式,scrpay 自带异步请求的方式为作业
             # 请求和保存图片
@@ -33,6 +33,7 @@ class XiaohuawangPipeline(object):
                 f.write(img_bytes)
             print('{}保存成功'.format(img_path))
 
+            return item
 
 
 

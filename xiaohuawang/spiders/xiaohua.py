@@ -8,7 +8,7 @@ from xiaohuawang.items import XiaohuawangItem
 class XiaohuaSpider(scrapy.Spider):
     name = 'xiaohua'
     allowed_domains = ['xiaohuar.com']
-    start_urls = ['http://www.xiaohuar.com/hua']
+    start_urls = ['http://www.xiaohuar.com/hua/']
 
     # 自定义头部
     custom_settings = {
@@ -49,12 +49,13 @@ class XiaohuaSpider(scrapy.Spider):
 
         for src in src_list:
             print('图片资源',src)
-            img_url = src
+            img_url = src# 由于网站开发技术原因，you路由形式访问
+            # 也有访问静态服务器接口形式的
             if img_url.startswith('https'):
                 pass
             else:
                 # 路由形成，协议http，没有解析xiaohuar.com
-                img_url = 'http://www.xiaohuar.com'
+                img_url = 'http://www.xiaohuar.com' + img_url
 
             img_name = src.split('/')[-1]    # 分隔取最后一项负1
 
