@@ -19,15 +19,15 @@ NEWSPIDER_MODULE = 'xiaohuawang.spiders'
 #USER_AGENT = 'xiaohuawang (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False   # 如果涉及注册登录设置为TRUR ，如果没涉及应该FALSE防治服务区发现同一个cookie中的
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 2         # 同时发送请求，，增加数值加大并发
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 3   #处理解析请求，没几秒处理一个请求，限制CONCURRENT_REQUESTS的性能   CONCURRENT_REQUESTS增大值， DOWNLOAD_DELAY 获得更高性能
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -64,9 +64,10 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'xiaohuawang.pipelines.XiaohuawangPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'xiaohuawang.pipelines.XiaohuawangPipeline': 100,
+}
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
